@@ -1,22 +1,27 @@
-
-class Monster(name: String, hp: Int, offensivePower: Int) {
+open class Character(name: String, hp: Int, offensivePower: Int){
     val name = name
     var hp = hp
     var offensivePower = offensivePower
 
-    fun infomation(): String{
-        return("name: ${this.name}, hp: ${this.hp}, offensivePower: ${this.offensivePower}")
+    fun skill(): Map<String, Int> {
+        return(mapOf("attack" to 30, "Enhance_power" to 20, "Deathblow" to 50, "defence" to 30))
     }
-}
-
-class Player(name: String, hp: Int, offensivePower: Int){
-    val name = name
-    var hp = hp
-    var offensivePower = offensivePower
 
     fun infomation(): String{
         return("name: ${this.name}, hp: ${this.hp},offensivePower: ${this.offensivePower}")
     }
+
+}
+
+
+
+class Monster(name: String, hp: Int, offensivePower: Int): Character(name, hp, offensivePower) {
+
+}
+
+class Player(name: String, hp: Int, offensivePower: Int): Character(name, hp, offensivePower){
+
+
 }
 
 
@@ -25,27 +30,17 @@ fun main(){
     println("バトルを始めます")
     println("-----------------------")
     var winner: String
-    var player = Player("勇者", 250, 50)
-    var monster = Monster("スライム", 300, 30)
-    while (true) {
-        println("${player.name}が攻撃！ ${monster.name}は${player.offensivePower}のダメージ")
-        monster.hp -= player.offensivePower
-        println("${monster.name}の残りHPは${monster.hp}")
-        if(monster.hp <= 0){
-            println("${monster.name}は倒れた")
-            winner = player.name
-            break
-        }
-        println("${monster.name}が攻撃！ ${player.name}は${monster.offensivePower}のダメージ")
-        player.hp -= monster.offensivePower
-        println("${player.name}の残りHPは${player.hp}")
-        if(player.hp <= 0){
-            println("勇者は倒れた!!!")
-            winner = monster.name
-            break
-        }
 
-    }
-    println("バトル終了！勝者：${winner}")
+    var player_1: Player = Player("剣者", 400, 50)
+    var player_2: Player = Player("魔法者", 300, 40)
+    var player_3: Player = Player("盾者", 350, 30)
+    var player_4: Player = Player("素手者", 380, 60)
 
+    var beast: Monster = Monster("ウルフ", 180, 80)
+    var golem: Monster = Monster("ゴーレム", 400, 30)
+    var humanoid: Monster = Monster("人型モンスター", 350, 50)
+    var slime: Monster =  Monster("スライム", 100, 20)
+
+    println(player_1.infomation())
+    println(golem.infomation())
 }
