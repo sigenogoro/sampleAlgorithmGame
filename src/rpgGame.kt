@@ -1,46 +1,56 @@
-open class Character(name: String, hp: Int, offensivePower: Int){
-    val name = name
-    var hp = hp
-    var offensivePower = offensivePower
+import kotlin.random.Random
 
-    fun skill(): Map<String, Int> {
-        return(mapOf("attack" to 30, "Enhance_power" to 20, "Deathblow" to 50, "defence" to 30))
+class Monster(){
+    val monster_array = listOf<Character>(
+        Character("ウルフ", 180, 80),
+        Character("ゴーレム", 400, 30),
+        Character("人型モンスター", 350, 50),
+        Character("スライム", 100, 20)
+    )
+
+    fun getMonsterdata(): List<Character>{
+        return monster_array
     }
 
-    fun infomation(): String{
-        return("name: ${this.name}, hp: ${this.hp},offensivePower: ${this.offensivePower}")
+    fun getMonsterOnedata(i: Int): Character{
+        return monster_array[i]
+    }
+
+
+
+}
+
+class Player(){
+    val player_array = listOf<Character>(
+        Character("剣者", 400, 50),
+        Character("魔法者", 300, 40),
+        Character("盾者", 350, 30),
+        Character("素手者", 380, 60)
+    )
+
+    fun getPlayerdata(): List<Character>{
+        return player_array
+    }
+
+    fun getPlayerOnedata(i: Int): Character{
+        return player_array[i]
     }
 
 }
-
-
-
-class Monster(name: String, hp: Int, offensivePower: Int): Character(name, hp, offensivePower) {
-
-}
-
-class Player(name: String, hp: Int, offensivePower: Int): Character(name, hp, offensivePower){
-
-
-}
-
-
 
 fun main(){
     println("バトルを始めます")
     println("-----------------------")
     var winner: String
 
-    var player_1: Player = Player("剣者", 400, 50)
-    var player_2: Player = Player("魔法者", 300, 40)
-    var player_3: Player = Player("盾者", 350, 30)
-    var player_4: Player = Player("素手者", 380, 60)
+    println("あなたが選ぶプレイヤーはどれですか？")
+    for((i, k) in Player().getPlayerdata().withIndex()){
+        println("${i+1}: ${k.name} 攻撃力: ${k.offensivePower} 体力: ${k.hp}")
+    }
+    val player = Player().getPlayerOnedata(readLine()!!.toInt()-1)
+    println("あなたは${player.infomation()}です")
+    println("相手は  ${Monster().getMonsterOnedata(Random.nextInt(3)).infomation()}")
 
-    var beast: Monster = Monster("ウルフ", 180, 80)
-    var golem: Monster = Monster("ゴーレム", 400, 30)
-    var humanoid: Monster = Monster("人型モンスター", 350, 50)
-    var slime: Monster =  Monster("スライム", 100, 20)
 
-    println(player_1.infomation())
-    println(golem.infomation())
+
 }
