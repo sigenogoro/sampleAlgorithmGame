@@ -11,6 +11,13 @@ class Character(name: String, hp: Int, offensivePower: Int){
         return("  名前:${this.name} 体力: ${this.hp} 攻撃力: ${this.offensivePower}")
     }
 
+    fun skillInfo(): String{
+        return("物理攻撃: ${this.skill()["attack"]} 力を溜める: ${this.skill()["Enhance_power"]}" +
+                " 必殺技: ${this.skill()["Deathblow"]} 防御: ${this.skill()["defence"]}")
+    }
+
+
+
 
 
 }

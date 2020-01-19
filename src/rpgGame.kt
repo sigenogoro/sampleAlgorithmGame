@@ -16,8 +16,6 @@ class Monster(){
         return monster_array[i]
     }
 
-
-
 }
 
 class Player(){
@@ -49,8 +47,7 @@ fun main(){
     }
     val player = Player().getPlayerOnedata(readLine()!!.toInt()-1)
     println("あなたは${player.infomation()}です")
+    println("${player.name}が持っているスキルは ${player.skillInfo()}")
     println("相手は  ${Monster().getMonsterOnedata(Random.nextInt(3)).infomation()}")
-
-
 
 }
